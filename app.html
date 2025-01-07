@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLite Database Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    {% if content %}
+        {% for table in content.keys() %}
+            <h1>{{ table }}</h1>
+            {% if content[table] %}
+                <table>
+                    <thead>
+                        <tr>
+                            {% for key in content[table][0].keys() %}
+                                <th>{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in content[table] %}
+                            <tr>
+                                {% for value in row.values() %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Table is empty.</p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No data available to display.</p>
+    {% endif %}
+</body>
+</html>
