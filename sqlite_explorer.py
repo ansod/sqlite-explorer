@@ -35,7 +35,7 @@ class Explorer:
             for table in tables:
                 content[table] = self.get_table(table)
 
-            return render_template('app.html', content=content)
+            return render_template('app.html', db_name=self.db, content=content)
 
         app.run(host='0.0.0.0', port=8080)
 
